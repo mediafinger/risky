@@ -8,6 +8,14 @@ class Country < ActiveRecord::Base
   has_many :neighbours,   class_name: "Country", foreign_key: "neighbour_id"
   belongs_to :neighbours, class_name: "Country"
 
+  def dices
+    @dices
+  end
+
+  # always store a sorted (desc) array with 2 elements
+  def dices=(arr)
+    @dices = ((arr + [0,0,0]).sort.reverse)[0..1]
+  end
 
   def neighbours
     neighbour_ids = Neighbour.where(country_id: self.id).pluck(:neighbour_id)
