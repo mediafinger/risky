@@ -14,16 +14,18 @@
 ActiveRecord::Schema.define(version: 20130922114650) do
 
   create_table "armies", force: true do |t|
-    t.integer  "player_id"
     t.integer  "country_id"
+    t.integer  "game_id"
+    t.integer  "player_id"
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "cards", force: true do |t|
-    t.integer  "player_id"
     t.integer  "country_id"
+    t.integer  "game_id"
+    t.integer  "player_id"
     t.integer  "bonus"
     t.string   "name"
     t.datetime "created_at"
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130922114650) do
   end
 
   create_table "countries", force: true do |t|
+    t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "region_id"
     t.string   "name"
@@ -62,6 +65,7 @@ ActiveRecord::Schema.define(version: 20130922114650) do
   end
 
   create_table "regions", force: true do |t|
+    t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "bonus"
     t.string   "name"
