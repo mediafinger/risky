@@ -40,18 +40,14 @@ class Game < ActiveRecord::Base
   end
 
   def end_game
+    self.armies.destroy
+    self.cards.destroy
+    self.countries.destroy
+    self.regions.destroy
     self.rounds.destroy
 
     self.players.each do |player|
-      player.armies.destroy
       player.update_attributes!(game_id: nil, rank: nil)
-    end
-
-    classes = [Card, Country, Region]
-    classes.each do |klass|
-      klass.all.each do |elem|
-        elem.update_attributes(player_id: nil)
-      end
     end
   end
 
