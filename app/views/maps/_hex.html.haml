@@ -2,33 +2,33 @@
   - puts "XXX: #{country.region.name}"
   - if country.region.name == "Africa"
     .left.africa-left
-    .middle.africa= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.africa= render 'country', country: country, x: x, y: y
     .right.africa-right
   - elsif country.region.name == "Asia"
     .left.asia-left
-    .middle.asia= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.asia= render 'country', country: country, x: x, y: y
     .right.asia-right
   - elsif country.region.name == "Australia"
     .left.australia-left
-    .middle.australia= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.australia= render 'country', country: country, x: x, y: y
     .right.australia-right
   - elsif country.region.name == "Europe"
     .left.europe-left
-    .middle.europe= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.europe= render 'country', country: country, x: x, y: y
     .right.europe-right
   - elsif country.region.name == "North_America"
     .left.north-america-left
-    .middle.north-america= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.north-america= render 'country', country: country, x: x, y: y
     .right.north-america-right
   - elsif country.region.name == "South_America"
     .left.south-america-left
-    .middle.south-america= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle.south-america= render 'country', country: country, x: x, y: y
     .right.south-america-right
   - else
     .left
-    .middle= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .middle= render 'country', country: country, x: x, y: y
     .right
 - else
   .left.water-left
-  .middle.water= "#{x} / #{y}"
+  .middle.water
   .right.water-right

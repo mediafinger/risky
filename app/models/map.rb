@@ -1,10 +1,16 @@
 class Map
 
-  def self.grid
+  def initialize
     @grid ||= create_grid
   end
 
-  def self.create_grid
+  def grid
+    @grid
+  end
+
+private
+
+  def create_grid
     grid = Array.new(8)
 
     for x in 0..grid.length-1
@@ -14,7 +20,7 @@ class Map
     return place_countries(grid)
   end
 
-  def self.place_countries(grid)
+  def place_countries(grid)
     grid[1][2] = Country.where(name: :Northwest_Territories).first
     grid[1][4] = Country.where(name: :Greenland).first
     grid[1][6] = Country.where(name: :Iceland).first

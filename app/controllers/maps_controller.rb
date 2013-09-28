@@ -3,6 +3,7 @@ class MapsController < ApplicationController
   end
 
   def risk_map
-    @grid = Map.grid
+    map = Map.new()
+    @grid = map.grid
   end
 end

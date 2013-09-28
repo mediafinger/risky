@@ -277,16 +277,16 @@ Game.create!(name: :First_Duell)
 puts "  Creating Players ..."
 Player.create!(game: Game.where(name: :First_Duell).first, name: "Danny", rank: 1, color: :red)
 Player.create!(game: Game.where(name: :First_Duell).first, name: "Andy",  rank: 2, color: :blue)
+Player.create!(game: Game.where(name: :First_Duell).first, name: "Andre", rank: 3, color: :yellow)
+Player.create!(game: Game.where(name: :First_Duell).first, name: "Jens",  rank: 4, color: :green)
 
 
 puts "Placing Armies on Map ..."
 x = 0
-countries = Country.all.to_a
+countries = Country.all.to_a.shuffle
 while x < countries.length - 1 do
   Player.all.each do |player|
-    countries[x].player_id = player.id
-    countries[x].save!
-
+    countries[x].update_attributes!(player_id: player.id)
     Army.create!(player: player, country: countries[x], size: 1)
 
     x += 1
