@@ -1,0 +1,17 @@
+/ ### Begin of partial shared/_metahead.html.haml ###
+%meta(charset="utf-8")
+%meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+%meta(name="viewport" content="width=device-width, initial-scale=1.0")
+%title Riskantes Spiel
+= csrf_meta_tags
+
+/ Include styles
+= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+= javascript_include_tag "application", "data-turbolinks-track" => true
+
+/ Include icons
+%link(href="/images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+%link(href="/images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+%link(href="/images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+%link(href="/images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+%link(href="/favicon.ico" rel="shortcut icon")
