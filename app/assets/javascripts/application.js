@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
 //= require ../ammap/ammap
 //= require ammap_settings
 //= require ../ammap/maps/js/worldLow.js
