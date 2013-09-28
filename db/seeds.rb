@@ -12,7 +12,7 @@ end
 
 puts "Creating Map"
 puts "  Creating Regions ..."
-Region.create!(player_id: nil, bonus: 3, name: :Afrika)
+Region.create!(player_id: nil, bonus: 3, name: :Africa)
 Region.create!(player_id: nil, bonus: 7, name: :Asia)
 Region.create!(player_id: nil, bonus: 2, name: :Australia)
 Region.create!(player_id: nil, bonus: 5, name: :Europe)
@@ -43,37 +43,52 @@ scandinavia =  Country.create!(player_id: nil, region: Region.where(name: :Europ
 spain       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Spain)
 ukraine     =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Ukraine)
 
-congo       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Congo)
-east_africa =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :East_Africa)
-egypt       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Egypt)
-madagascar  =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Madagascar)
-nwa         =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Northwest_Africa)
-south_africa=  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :South_Africa)
+congo       =  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :Congo)
+east_africa =  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :East_Africa)
+egypt       =  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :Egypt)
+madagascar  =  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :Madagascar)
+nwa         =  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :Northwest_Africa)
+south_africa=  Country.create!(player_id: nil, region: Region.where(name: :Africa).first, name: :South_Africa)
 
-afg         =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Afghanistan)
-china       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :China)
-india       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :India)
-irkutsk     =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Irkutsk)
-jakutien    =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Jakutien)
-japan       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Japan)
-middle_east =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Middle_East)
-mongolia    =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Mongolia)
-novo        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Novosibirsk)
-sibiria     =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Sibiria)
-thai        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Thailand)
-ural        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Ural)
+afg         =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Afghanistan)
+china       =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :China)
+india       =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :India)
+irkutsk     =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Irkutsk)
+jakutien    =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Jakutien)
+japan       =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Japan)
+middle_east =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Middle_East)
+mongolia    =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Mongolia)
+novo        =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Novosibirsk)
+sibiria     =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Sibiria)
+thai        =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Thailand)
+ural        =  Country.create!(player_id: nil, region: Region.where(name: :Asia).first, name: :Ural)
 
-east_au     =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :East_Australia)
-guinea      =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :New_Guinea)
-indonesia   =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Indonesia)
-west_au     =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :West_Australia)
+east_au     =  Country.create!(player_id: nil, region: Region.where(name: :Australia).first, name: :East_Australia)
+guinea      =  Country.create!(player_id: nil, region: Region.where(name: :Australia).first, name: :New_Guinea)
+indonesia   =  Country.create!(player_id: nil, region: Region.where(name: :Australia).first, name: :Indonesia)
+west_au     =  Country.create!(player_id: nil, region: Region.where(name: :Australia).first, name: :West_Australia)
 
 
 puts "  Setting Neighbours ..."
 Neighbour.create!(country_id: alaska.id, neighbour_id: bc.id)
 Neighbour.create!(country_id: alaska.id, neighbour_id: nwt.id)
+Neighbour.create!(country_id: alaska.id, neighbour_id: novo.id)
+
 Neighbour.create!(country_id: bc.id, neighbour_id: alaska.id)
 Neighbour.create!(country_id: bc.id, neighbour_id: nwt.id)
+Neighbour.create!(country_id: bc.id, neighbour_id: ontario.id)
+Neighbour.create!(country_id: bc.id, neighbour_id: california.id)
+
+Neighbour.create!(country_id: california.id, neighbour_id: bc.id)
+Neighbour.create!(country_id: california.id, neighbour_id: mexico.id)
+Neighbour.create!(country_id: california.id, neighbour_id: new_england.id)
+
+Neighbour.create!(country_id: greenland.id, neighbour_id: nwt.id)
+Neighbour.create!(country_id: greenland.id, neighbour_id: ontario.id)
+Neighbour.create!(country_id: greenland.id, neighbour_id: quebec.id)
+Neighbour.create!(country_id: greenland.id, neighbour_id: iceland.id)
+
+
 Neighbour.create!(country_id: nwt.id, neighbour_id: alaska.id)
 Neighbour.create!(country_id: nwt.id, neighbour_id: bc.id)
 

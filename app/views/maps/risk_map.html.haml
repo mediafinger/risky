@@ -5,39 +5,7 @@
       - for y in 1..@grid[x].length-1
         - if y.even?
           .hex.even
-            - if @grid[x][y]
-              .left
-              .middle= "#{x} / #{y} #{@grid[x][y].name}"
-              .right
-            - else
-              .left.water-left
-              .middle.water= "#{x} / #{y}"
-              .right.water-right
+            = render 'hex', country: @grid[x][y], x: x, y: y
         - else
           .hex
-            - if @grid[x][y]
-              .left
-              .middle= "#{x} / #{y} #{@grid[x][y].name}"
-              .right
-            - else
-              .left.water-left
-              .middle.water= "#{x} / #{y}"
-              .right.water-right
-
-    / - if x.even?
-    /   .even
-    /     - for y in 1..@grid[x].length-1
-    /       - if @grid[x][y]
-    /         -# .country.hex= @grid[x][y].name
-    /         .country.hex= x / y
-    /       - else
-    /         .water.hex
-
-    / - else
-    /   .odd
-    /     - for y in 1..@grid[x].length-1
-    /       - if @grid[x][y]
-    /         -# .country.hex= @grid[x][y].name
-    /         .country.hex= x / y
-    /       - else
-    /         .water.hex
+            = render 'hex', country: @grid[x][y], x: x, y: y

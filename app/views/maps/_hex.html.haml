@@ -1,0 +1,34 @@
+- if country
+  - puts "XXX: #{country.region.name}"
+  - if country.region.name == "Africa"
+    .left.africa-left
+    .middle.africa= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.africa-right
+  - elsif country.region.name == "Asia"
+    .left.asia-left
+    .middle.asia= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.asia-right
+  - elsif country.region.name == "Australia"
+    .left.australia-left
+    .middle.australia= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.australia-right
+  - elsif country.region.name == "Europe"
+    .left.europe-left
+    .middle.europe= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.europe-right
+  - elsif country.region.name == "North_America"
+    .left.north-america-left
+    .middle.north-america= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.north-america-right
+  - elsif country.region.name == "South_America"
+    .left.south-america-left
+    .middle.south-america= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right.south-america-right
+  - else
+    .left
+    .middle= "#{x} / #{y} #{country.name.split("_").join(" ")}"
+    .right
+- else
+  .left.water-left
+  .middle.water= "#{x} / #{y}"
+  .right.water-right

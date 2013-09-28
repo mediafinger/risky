@@ -2,7 +2,7 @@
   background-color: #66C;
   border: 3px solid;
   float: left;
-  margin-left: -400px;
+  // margin-left: -400px;
   overflow: hidden;
   padding: 5px 30px 55px 5px;
 
@@ -43,17 +43,33 @@
     border-bottom: 52px solid transparent;
   }
 
-  .hex .water {
-    background: #66C;
-  }
+  .hex .africa { background: #993; }
+  .hex .africa-left { border-right: 30px solid #993; }
+  .hex .africa-right { border-left: 30px solid #993; }
 
-  .hex .water-left {
-    border-right: 30px solid #66C;
-  }
+  .hex .asia { background: #9F9; }
+  .hex .asia-left { border-right: 30px solid #9F9; }
+  .hex .asia-right { border-left: 30px solid #9F9; }
 
-  .hex .water-right {
-    border-left: 30px solid #66C;
-  }
+  .hex .australia { background: #F99; }
+  .hex .australia-left { border-right: 30px solid #F99; }
+  .hex .australia-right { border-left: 30px solid #F99; }
+
+  .hex .europe { background: #39F; }
+  .hex .europe-left { border-right: 30px solid #39F; }
+  .hex .europe-right { border-left: 30px solid #39F; }
+
+  .hex .north-america { background: #FF0; }
+  .hex .north-america-left { border-right: 30px solid #FF0; }
+  .hex .north-america-right { border-left: 30px solid #FF0; }
+
+  .hex .south-america { background: #C36; }
+  .hex .south-america-left { border-right: 30px solid #C36; }
+  .hex .south-america-right { border-left: 30px solid #C36; }
+
+  .hex .water { background: #66C; }
+  .hex .water-left { border-right: 30px solid #66C; }
+  .hex .water-right { border-left: 30px solid #66C; }
 
 
 }
