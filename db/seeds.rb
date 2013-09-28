@@ -117,7 +117,9 @@ east_au.countries       << [guinea, west_au]
 west_au.countries       << [guinea, east_au, indonesia]
 
 
-puts "  Creating Players ..."
+# only for development:
+
+puts "Creating Players ..."
 players = [
   Player.create!(name: "Danny", color: :red),
   Player.create!(name: "Andy",  color: :blue),
@@ -130,5 +132,7 @@ game = Game.create
 game.add_players(players)
 game.distribute_countries
 game.create_cards
+
+game.players.first.update_attributes!(active: true)
 
 # Round.create!()

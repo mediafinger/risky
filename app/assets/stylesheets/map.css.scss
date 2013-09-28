@@ -14,6 +14,11 @@
     padding: 5px 0;
   }
 
+  a .army {
+    border-color: black;
+    color: white;
+  }
+
   .hex-row {
     clear: left;
   }
@@ -68,9 +73,9 @@
   .hex .europe-left { border-right: 30px solid #39F; }
   .hex .europe-right { border-left: 30px solid #39F; }
 
-  .hex .north-america { background: #FF0; }
-  .hex .north-america-left { border-right: 30px solid #FF0; }
-  .hex .north-america-right { border-left: 30px solid #FF0; }
+  .hex .north-america { background: #FF8; }
+  .hex .north-america-left { border-right: 30px solid #FF8; }
+  .hex .north-america-right { border-left: 30px solid #FF8; }
 
   .hex .south-america { background: #C36; }
   .hex .south-america-left { border-right: 30px solid #C36; }
