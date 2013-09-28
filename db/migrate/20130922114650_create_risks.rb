@@ -28,7 +28,7 @@ class CreateRisks < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :neighbours do |t|
+    create_table :countries_countries do |t|
       t.integer  :country_id
       t.integer  :neighbour_id
       t.timestamps

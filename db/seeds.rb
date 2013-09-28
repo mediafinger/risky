@@ -70,205 +70,52 @@ west_au     =  Country.create!(player_id: nil, region: Region.where(name: :Austr
 
 
 puts "  Setting Neighbours ..."
-Neighbour.create!(country_id: alaska.id, neighbour_id: bc.id)
-Neighbour.create!(country_id: alaska.id, neighbour_id: nwt.id)
-Neighbour.create!(country_id: alaska.id, neighbour_id: novo.id)
+alaska.countries        << [bc, nwt, novo]
+bc.countries            << [alaska, nwt, ontario, california]
+california.countries    << [bc, mexico, new_england]
+greenland.countries     << [nwt, ontario, quebec, iceland]
+mexico.countries        << [california, new_england, colombia]
+nwt.countries           << [alaska, bc, ontario, greenland]
+ontario.countries       << [nwt, bc, new_england, quebec, greenland]
+quebec.countries        << [ontario, greenland, new_england]
 
-Neighbour.create!(country_id: bc.id, neighbour_id: alaska.id)
-Neighbour.create!(country_id: bc.id, neighbour_id: nwt.id)
-Neighbour.create!(country_id: bc.id, neighbour_id: ontario.id)
-Neighbour.create!(country_id: bc.id, neighbour_id: california.id)
+brazil.countries        << [colombia, peru, argentina, nwa]
+colombia.countries      << [mexico, brazil, peru]
+peru.countries          << [brazil, colombia, argentina]
+argentina.countries     << [brazil, peru]
 
-Neighbour.create!(country_id: california.id, neighbour_id: bc.id)
-Neighbour.create!(country_id: california.id, neighbour_id: mexico.id)
-Neighbour.create!(country_id: california.id, neighbour_id: new_england.id)
+germany.countries       << [gb, scandinavia, ukraine, italy, spain]
+gb.countries            << [germany, scandinavia, iceland, spain]
+iceland.countries       << [greenland, scandinavia, gb]
+italy.countries         << [spain, germany, ukraine, middle_east, egypt, nwa]
+scandinavia.countries   << [iceland, ukraine, germany, gb]
+spain.countries         << [spain, germany, italy, nwa]
+ukraine.countries       << [scandinavia, germany, italy, middle_east, afg, ural]
 
-Neighbour.create!(country_id: greenland.id, neighbour_id: nwt.id)
-Neighbour.create!(country_id: greenland.id, neighbour_id: ontario.id)
-Neighbour.create!(country_id: greenland.id, neighbour_id: quebec.id)
-Neighbour.create!(country_id: greenland.id, neighbour_id: iceland.id)
+congo.countries         << [nwa, east_africa, south_africa]
+east_africa.countries   << [middle_east, madagascar, south_africa, congo, nwa, egypt]
+egypt.countries         << [italy, middle_east, east_africa, nwa]
+madagascar.countries    << [east_africa, south_africa]
+nwa.countries           << [spain, italy, egypt, east_africa, congo, brazil]
+south_africa.countries  << [madagascar, congo, east_africa]
 
-Neighbour.create!(country_id: mexico.id, neighbour_id: california.id)
-Neighbour.create!(country_id: mexico.id, neighbour_id: new_england.id)
-Neighbour.create!(country_id: mexico.id, neighbour_id: colombia.id)
+afg.countries           << [china, india, middle_east, ural, ukraine]
+china.countries         << [afg, india, mongolia, sibiria, thai, ural]
+india.countries         << [afg, china, middle_east, thai]
+irkutsk.countries       << [jakutien, mongolia, novo, sibiria]
+jakutien.countries      << [irkutsk, novo, sibiria]
+japan.countries         << [mongolia, novo]
+middle_east.countries   << [afg, india, east_africa, egypt, italy, ukraine]
+mongolia.countries      << [china, irkutsk, japan, novo, sibiria]
+novo.countries          << [irkutsk, jakutien, japan, mongolia]
+sibiria.countries       << [china, irkutsk, jakutien, mongolia, ural]
+thai.countries          << [china, india, indonesia]
+ural.countries          << [afg, china, sibiria, ukraine]
 
-Neighbour.create!(country_id: nwt.id, neighbour_id: alaska.id)
-Neighbour.create!(country_id: nwt.id, neighbour_id: bc.id)
-Neighbour.create!(country_id: nwt.id, neighbour_id: ontario.id)
-Neighbour.create!(country_id: nwt.id, neighbour_id: greenland.id)
-
-Neighbour.create!(country_id: ontario.id, neighbour_id: nwt.id)
-Neighbour.create!(country_id: ontario.id, neighbour_id: bc.id)
-Neighbour.create!(country_id: ontario.id, neighbour_id: new_england.id)
-Neighbour.create!(country_id: ontario.id, neighbour_id: quebec.id)
-Neighbour.create!(country_id: ontario.id, neighbour_id: greenland.id)
-
-Neighbour.create!(country_id: quebec.id, neighbour_id: ontario.id)
-Neighbour.create!(country_id: quebec.id, neighbour_id: greenland.id)
-Neighbour.create!(country_id: quebec.id, neighbour_id: new_england.id)
-
-Neighbour.create!(country_id: brazil.id, neighbour_id: colombia.id)
-Neighbour.create!(country_id: brazil.id, neighbour_id: peru.id)
-Neighbour.create!(country_id: brazil.id, neighbour_id: argentina.id)
-Neighbour.create!(country_id: brazil.id, neighbour_id: nwa.id)
-
-Neighbour.create!(country_id: colombia.id, neighbour_id: mexico.id)
-Neighbour.create!(country_id: colombia.id, neighbour_id: brazil.id)
-Neighbour.create!(country_id: colombia.id, neighbour_id: peru.id)
-
-Neighbour.create!(country_id: peru.id, neighbour_id: brazil.id)
-Neighbour.create!(country_id: peru.id, neighbour_id: colombia.id)
-Neighbour.create!(country_id: peru.id, neighbour_id: argentina.id)
-
-Neighbour.create!(country_id: argentina.id, neighbour_id: brazil.id)
-Neighbour.create!(country_id: argentina.id, neighbour_id: peru.id)
-
-Neighbour.create!(country_id: germany.id, neighbour_id: gb.id)
-Neighbour.create!(country_id: germany.id, neighbour_id: scandinavia.id)
-Neighbour.create!(country_id: germany.id, neighbour_id: ukraine.id)
-Neighbour.create!(country_id: germany.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: germany.id, neighbour_id: spain.id)
-
-Neighbour.create!(country_id: gb.id, neighbour_id: germany.id)
-Neighbour.create!(country_id: gb.id, neighbour_id: scandinavia.id)
-Neighbour.create!(country_id: gb.id, neighbour_id: iceland.id)
-Neighbour.create!(country_id: gb.id, neighbour_id: spain.id)
-
-Neighbour.create!(country_id: iceland.id, neighbour_id: greenland.id)
-Neighbour.create!(country_id: iceland.id, neighbour_id: scandinavia.id)
-Neighbour.create!(country_id: iceland.id, neighbour_id: gb.id)
-
-Neighbour.create!(country_id: italy.id, neighbour_id: spain.id)
-Neighbour.create!(country_id: italy.id, neighbour_id: germany.id)
-Neighbour.create!(country_id: italy.id, neighbour_id: ukraine.id)
-Neighbour.create!(country_id: italy.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: italy.id, neighbour_id: egypt.id)
-Neighbour.create!(country_id: italy.id, neighbour_id: nwa.id)
-
-Neighbour.create!(country_id: scandinavia.id, neighbour_id: iceland.id)
-Neighbour.create!(country_id: scandinavia.id, neighbour_id: ukraine.id)
-Neighbour.create!(country_id: scandinavia.id, neighbour_id: germany.id)
-Neighbour.create!(country_id: scandinavia.id, neighbour_id: gb.id)
-
-Neighbour.create!(country_id: spain.id, neighbour_id: spain.id)
-Neighbour.create!(country_id: spain.id, neighbour_id: germany.id)
-Neighbour.create!(country_id: spain.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: spain.id, neighbour_id: nwa.id)
-
-Neighbour.create!(country_id: ukraine.id, neighbour_id: scandinavia.id)
-Neighbour.create!(country_id: ukraine.id, neighbour_id: germany.id)
-Neighbour.create!(country_id: ukraine.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: ukraine.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: ukraine.id, neighbour_id: afg.id)
-Neighbour.create!(country_id: ukraine.id, neighbour_id: ural.id)
-
-Neighbour.create!(country_id: congo.id, neighbour_id: nwa.id)
-Neighbour.create!(country_id: congo.id, neighbour_id: east_africa.id)
-Neighbour.create!(country_id: congo.id, neighbour_id: south_africa.id)
-
-Neighbour.create!(country_id: east_africa.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: east_africa.id, neighbour_id: madagascar.id)
-Neighbour.create!(country_id: east_africa.id, neighbour_id: south_africa.id)
-Neighbour.create!(country_id: east_africa.id, neighbour_id: congo.id)
-Neighbour.create!(country_id: east_africa.id, neighbour_id: nwa.id)
-Neighbour.create!(country_id: east_africa.id, neighbour_id: egypt.id)
-
-Neighbour.create!(country_id: egypt.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: egypt.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: egypt.id, neighbour_id: east_africa.id)
-Neighbour.create!(country_id: egypt.id, neighbour_id: nwa.id)
-
-Neighbour.create!(country_id: madagascar.id, neighbour_id: east_africa.id)
-Neighbour.create!(country_id: madagascar.id, neighbour_id: south_africa.id)
-
-Neighbour.create!(country_id: nwa.id, neighbour_id: spain.id)
-Neighbour.create!(country_id: nwa.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: nwa.id, neighbour_id: egypt.id)
-Neighbour.create!(country_id: nwa.id, neighbour_id: east_africa.id)
-Neighbour.create!(country_id: nwa.id, neighbour_id: congo.id)
-Neighbour.create!(country_id: nwa.id, neighbour_id: brazil.id)
-
-Neighbour.create!(country_id: south_africa.id, neighbour_id: madagascar.id)
-Neighbour.create!(country_id: south_africa.id, neighbour_id: congo.id)
-Neighbour.create!(country_id: south_africa.id, neighbour_id: east_africa.id)
-
-Neighbour.create!(country_id: afg.id, neighbour_id: china.id)
-Neighbour.create!(country_id: afg.id, neighbour_id: india.id)
-Neighbour.create!(country_id: afg.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: afg.id, neighbour_id: ural.id)
-Neighbour.create!(country_id: afg.id, neighbour_id: ukraine.id)
-
-Neighbour.create!(country_id: china.id, neighbour_id: afg.id)
-Neighbour.create!(country_id: china.id, neighbour_id: india.id)
-Neighbour.create!(country_id: china.id, neighbour_id: mongolia.id)
-Neighbour.create!(country_id: china.id, neighbour_id: sibiria.id)
-Neighbour.create!(country_id: china.id, neighbour_id: thai.id)
-Neighbour.create!(country_id: china.id, neighbour_id: ural.id)
-
-Neighbour.create!(country_id: india.id, neighbour_id: afg.id)
-Neighbour.create!(country_id: india.id, neighbour_id: china.id)
-Neighbour.create!(country_id: india.id, neighbour_id: middle_east.id)
-Neighbour.create!(country_id: india.id, neighbour_id: thai.id)
-
-Neighbour.create!(country_id: irkutsk.id, neighbour_id: jakutien.id)
-Neighbour.create!(country_id: irkutsk.id, neighbour_id: mongolia.id)
-Neighbour.create!(country_id: irkutsk.id, neighbour_id: novo.id)
-Neighbour.create!(country_id: irkutsk.id, neighbour_id: sibiria.id)
-
-Neighbour.create!(country_id: jakutien.id, neighbour_id: irkutsk.id)
-Neighbour.create!(country_id: jakutien.id, neighbour_id: novo.id)
-Neighbour.create!(country_id: jakutien.id, neighbour_id: sibiria.id)
-
-Neighbour.create!(country_id: japan.id, neighbour_id: mongolia.id)
-Neighbour.create!(country_id: japan.id, neighbour_id: novo.id)
-
-Neighbour.create!(country_id: middle_east.id, neighbour_id: afg.id)
-Neighbour.create!(country_id: middle_east.id, neighbour_id: india.id)
-Neighbour.create!(country_id: middle_east.id, neighbour_id: east_africa.id)
-Neighbour.create!(country_id: middle_east.id, neighbour_id: egypt.id)
-Neighbour.create!(country_id: middle_east.id, neighbour_id: italy.id)
-Neighbour.create!(country_id: middle_east.id, neighbour_id: ukraine.id)
-
-Neighbour.create!(country_id: mongolia.id, neighbour_id: china.id)
-Neighbour.create!(country_id: mongolia.id, neighbour_id: irkutsk.id)
-Neighbour.create!(country_id: mongolia.id, neighbour_id: japan.id)
-Neighbour.create!(country_id: mongolia.id, neighbour_id: novo.id)
-Neighbour.create!(country_id: mongolia.id, neighbour_id: sibiria.id)
-
-Neighbour.create!(country_id: novo.id, neighbour_id: irkutsk.id)
-Neighbour.create!(country_id: novo.id, neighbour_id: jakutien.id)
-Neighbour.create!(country_id: novo.id, neighbour_id: japan.id)
-Neighbour.create!(country_id: novo.id, neighbour_id: mongolia.id)
-
-Neighbour.create!(country_id: sibiria.id, neighbour_id: china.id)
-Neighbour.create!(country_id: sibiria.id, neighbour_id: irkutsk.id)
-Neighbour.create!(country_id: sibiria.id, neighbour_id: jakutien.id)
-Neighbour.create!(country_id: sibiria.id, neighbour_id: mongolia.id)
-Neighbour.create!(country_id: sibiria.id, neighbour_id: ural.id)
-
-Neighbour.create!(country_id: thai.id, neighbour_id: china.id)
-Neighbour.create!(country_id: thai.id, neighbour_id: india.id)
-Neighbour.create!(country_id: thai.id, neighbour_id: indonesia.id)
-
-Neighbour.create!(country_id: ural.id, neighbour_id: afg.id)
-Neighbour.create!(country_id: ural.id, neighbour_id: china.id)
-Neighbour.create!(country_id: ural.id, neighbour_id: sibiria.id)
-Neighbour.create!(country_id: ural.id, neighbour_id: ukraine.id)
-
-Neighbour.create!(country_id: indonesia.id, neighbour_id: thai.id)
-Neighbour.create!(country_id: indonesia.id, neighbour_id: guinea.id)
-Neighbour.create!(country_id: indonesia.id, neighbour_id: west_au.id)
-
-Neighbour.create!(country_id: guinea.id, neighbour_id: west_au.id)
-Neighbour.create!(country_id: guinea.id, neighbour_id: east_au.id)
-Neighbour.create!(country_id: guinea.id, neighbour_id: indonesia.id)
-
-Neighbour.create!(country_id: east_au.id, neighbour_id: guinea.id)
-Neighbour.create!(country_id: east_au.id, neighbour_id: west_au.id)
-
-Neighbour.create!(country_id: west_au.id, neighbour_id: guinea.id)
-Neighbour.create!(country_id: west_au.id, neighbour_id: east_au.id)
-Neighbour.create!(country_id: west_au.id, neighbour_id: indonesia.id)
+indonesia.countries     << [thai, guinea, west_au]
+guinea.countries        << [west_au, east_au, indonesia]
+east_au.countries       << [guinea, west_au]
+west_au.countries       << [guinea, east_au, indonesia]
 
 
 puts "Creating Game ..."

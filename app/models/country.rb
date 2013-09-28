@@ -5,27 +5,19 @@ class Country < ActiveRecord::Base
   has_one :card
   has_one :army
 
-  has_many :neighbours,   class_name: "Country", foreign_key: "neighbour_id"
-  belongs_to :neighbours, class_name: "Country"
+  has_and_belongs_to_many :countries, foreign_key: "neighbour_id"
 
   def dices
     @dices
   end
 
-  # always store a sorted (desc) array with 2 elements
+  # always use a sorted (desc) array with 2 elements
   def dices=(arr)
     @dices = ((arr + [0,0,0]).sort.reverse)[0..1]
   end
 
   def neighbours
-    neighbour_ids = Neighbour.where(country_id: self.id).pluck(:neighbour_id)
-    neighbour_names = []
-
-    neighbour_ids.each do |id|
-      neighbour_names << Country.where(id: id).first.name
-    end
-
-    neighbour_names
+    countries.pluck(:name)
   end
 
 end
