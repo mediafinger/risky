@@ -12,28 +12,78 @@ end
 
 puts "Creating Map"
 puts "  Creating Regions ..."
-# Region.create!(player_id: nil, bonus: 3, name: :Afrika)
-# Region.create!(player_id: nil, bonus: 7, name: :Asia)
-# Region.create!(player_id: nil, bonus: 2, name: :Australia)
-# Region.create!(player_id: nil, bonus: 5, name: :Europe)
+Region.create!(player_id: nil, bonus: 3, name: :Afrika)
+Region.create!(player_id: nil, bonus: 7, name: :Asia)
+Region.create!(player_id: nil, bonus: 2, name: :Australia)
+Region.create!(player_id: nil, bonus: 5, name: :Europe)
 Region.create!(player_id: nil, bonus: 5, name: :North_America)
 Region.create!(player_id: nil, bonus: 2, name: :South_America)
 
 puts "  Creating Countries ..."
-brasil =    Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Brasil)
-colombia =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Colombia)
-mexico =    Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Mexico)
-peru =      Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Peru)
+alaska      =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Alaska)
+bc          =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :British_Columbia)
+california  =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :California)
+greenland   =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Greenland)
+mexico      =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Mexico)
+new_england =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :New_England)
+nwt         =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Northwest_Territories)
+ontario     =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Ontario)
+quebec      =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Quebec)
+
+argentina   =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Argentina)
+brazil      =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Brazil)
+colombia    =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Colombia)
+peru        =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Peru)
+
+germany     =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Germany)
+gb          =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Great_Britain)
+iceland     =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Iceland)
+italy       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Italy)
+scandinavia =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Scandinavia)
+spain       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Spain)
+ukraine     =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Ukraine)
+
+congo       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Congo)
+east_africa =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :East_Africa)
+egypt       =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Egypt)
+madagascar  =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Madagascar)
+nwa         =  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :Northwest_Africa)
+south_africa=  Country.create!(player_id: nil, region: Region.where(name: :Europe).first, name: :South_Africa)
+
+afg         =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Afghanistan)
+china       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :China)
+india       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :India)
+irkutsk     =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Irkutsk)
+jakutien    =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Jakutien)
+japan       =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Japan)
+middle_east =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Middle_East)
+mongolia    =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Mongolia)
+novo        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Novosibirsk)
+sibiria     =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Sibiria)
+thai        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Thailand)
+ural        =  Country.create!(player_id: nil, region: Region.where(name: :North_America).first, name: :Ural)
+
+east_au     =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :East_Australia)
+guinea      =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :New_Guinea)
+indonesia   =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :Indonesia)
+west_au     =  Country.create!(player_id: nil, region: Region.where(name: :South_America).first, name: :West_Australia)
 
 
 puts "  Setting Neighbours ..."
-Neighbour.create!(country_id: brasil.id, neighbour_id: colombia.id)
-Neighbour.create!(country_id: brasil.id, neighbour_id: peru.id)
-Neighbour.create!(country_id: colombia.id, neighbour_id: brasil.id)
+Neighbour.create!(country_id: alaska.id, neighbour_id: bc.id)
+Neighbour.create!(country_id: alaska.id, neighbour_id: nwt.id)
+Neighbour.create!(country_id: bc.id, neighbour_id: alaska.id)
+Neighbour.create!(country_id: bc.id, neighbour_id: nwt.id)
+Neighbour.create!(country_id: nwt.id, neighbour_id: alaska.id)
+Neighbour.create!(country_id: nwt.id, neighbour_id: bc.id)
+
+Neighbour.create!(country_id: brazil.id, neighbour_id: colombia.id)
+Neighbour.create!(country_id: brazil.id, neighbour_id: peru.id)
+Neighbour.create!(country_id: colombia.id, neighbour_id: brazil.id)
 Neighbour.create!(country_id: colombia.id, neighbour_id: mexico.id)
 Neighbour.create!(country_id: colombia.id, neighbour_id: peru.id)
 Neighbour.create!(country_id: mexico.id, neighbour_id: colombia.id)
-Neighbour.create!(country_id: peru.id, neighbour_id: brasil.id)
+Neighbour.create!(country_id: peru.id, neighbour_id: brazil.id)
 Neighbour.create!(country_id: peru.id, neighbour_id: colombia.id)
 
 puts "Creating Game ..."
@@ -47,7 +97,7 @@ Player.create!(game: Game.where(name: :First_Duell).first, name: "Andy",  rank: 
 puts "Placing Armies on Map ..."
 x = 0
 countries = Country.all.to_a
-while x < countries.length do
+while x < countries.length - 1 do
   Player.all.each do |player|
     countries[x].player_id = player.id
     countries[x].save!
@@ -55,7 +105,7 @@ while x < countries.length do
     Army.create!(player: player, country: countries[x], size: 1)
 
     x += 1
-    break if x > countries.length
+    break if x >= countries.length
   end
 end
 
