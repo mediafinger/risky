@@ -32,4 +32,5 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'awesome_print'
 end
