@@ -1,9 +1,5 @@
 class MapsController < ApplicationController
-
   before_filter :load_grid
-
-  def ammap
-  end
 
   def risk_map
   end
@@ -13,7 +9,6 @@ class MapsController < ApplicationController
 
   def select_neighbour
   end
-
 
 
 private
