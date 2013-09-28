@@ -7,23 +7,26 @@ end
 class NotEnoughTroopsException < StandardError
 end
 
-class Fight
+class Conflict
   def initialize(attacking_country, defending_country)
     raise NoBorderException unless attacking_country.neighbours.include? defending_country.name
     raise CanNotAttackYourselfException unless attacking_country.player_id != defending_country.player_id
 
     @attacker = attacking_country
     @defender = defending_country
+
+    Notificator.put "#{@attacker.name} (#{@attacker.player.name}) does not like #{@defender.name} (#{@defender.player.name})"
   end
 
-  def fight(troops)
+  def attack(troops)
     raise NotEnoughTroopsException unless @attacker.army.size > troops
+    Notificator.put "Attacking with #{troops}"
 
     @attacker.dices = dices(troops)
     @defender.dices = dices([@defender.army.size, 2].min)
 
     calculate_losses
-    take_country(troops) if @defender.army.size <= 0
+    take_country(troops)
 
     @defender.player_id == @attacker.player.id
   end
@@ -58,17 +61,20 @@ class Fight
   end
 
   def reduce_army(army, count)
-    puts "#{army.player.name} lost #{count}"
-    army.update_attributes!(size: army.size - count)
+    Notificator.put "#{army.player.name} lost #{count}"
+    army.update_attributes(size: army.size - count) || (army.destroy and @defender.reload and Notificator.put("Army of #{army.country.name} DESTROYED"))
   end
 
   def take_country(troops)
-    puts "Defending army DESTROYED" if @defender.army.destroy!
+    return if @defender.army
 
     occupying_forces = [troops, @attacker.army.size - 1].min
+    defending_player_name = @defender.player.name
 
     @defender.update_attributes!(player_id: @attacker.player_id)
     @attacker.army.update_attributes!(size: @attacker.army.size - occupying_forces)
+
+    Notificator.put "#{@attacker.player.name} beats #{defending_player_name} and occupies #{@defender.name} with #{occupying_forces} armies from #{@attacker.name}"
 
     Army.create!(player: @attacker.player, country_id: @defender.id, size: occupying_forces)
   end
