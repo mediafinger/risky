@@ -22,12 +22,14 @@ class Conflict
     raise NotEnoughTroopsException unless @attacker.army.size > troops
     Notificator.put "Attacking with #{troops}"
 
-    @attacker.dices = dices(troops)
+    @attacker.dices = dices([troops, 3].min)
     @defender.dices = dices([@defender.army.size, 2].min)
 
     calculate_losses
     take_country(troops)
 
+    # return value true if the attacker occupied the other country
+    Notificator.put "------------------------"
     @defender.player_id == @attacker.player.id
   end
 
@@ -47,6 +49,7 @@ class Conflict
     attack_rounds = (@attacker.dices[1] > 0 && @defender.dices[1] > 0) ? 2 : 1
 
     for x in 0..(attack_rounds - 1) do
+      Notificator.put("#{@attacker.dices[x]} vs #{@defender.dices[x]}")
       if @attacker.dices[x] > @defender.dices[x]
         losses_defender += 1
       else
