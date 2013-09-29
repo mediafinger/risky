@@ -3,6 +3,7 @@ Zugfahrt::Application.routes.draw do
 
   get 'map1' => 'maps#risk_map'
   get 'map2' => 'maps#risk_map2'
+  get 'map3' => 'maps#risk_map3'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,100 @@
+%section.hex3.clearfix
+  - for x in 1..@grid.length-1
+    - if x == 1
+      .hex3-grid-top
+        - for y in 1..@grid[x].length-1
+          = render 'hex3', country: @grid[x][y]
+    - elsif x >= @grid.length - 1
+      .hex3-grid-bot
+        - for y in 1..@grid[x].length-1
+          = render 'hex3', country: @grid[x][y]
+    - elsif x.even?
+      .hex3-grid-mid-even
+        - for y in 1..@grid[x].length-1
+          = render 'hex3', country: @grid[x][y]
+    - else
+      .hex3-grid-mid-odd
+        - for y in 1..@grid[x].length-1
+          = render 'hex3', country: @grid[x][y]
+
+
+/ %section.hex3.clearfix
+
+/   .hex3-grid-top
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+
+/   .hex3-grid-mid-odd
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+
+/   .hex3-grid-mid-even
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+
+/   .hex3-grid-mid-odd
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+
+/   .hex3-grid-bot
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3
+/     .hexagon3.hexagon3-scale
+/       .hexagon3-in1
+/         .hexagon3-in2.red3

@@ -89,11 +89,6 @@
 
 
 
-
-
-
-
-
 /* Alternative HEX SCSS */
 
 $hex2-size: 3em; // Only change size here. Best used with sizes from 5em - 10em.
@@ -157,3 +152,109 @@ ol.odd2 {
 .south-america2 { background: #C36; }
 .water2 { background: #66C; }
 
+
+/* Another alternative HEX CSS */
+
+/* hexagon3
+----------- */
+
+.hexagon3 {
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-transform: rotate(120deg);
+       -moz-transform: rotate(120deg);
+         -o-transform: rotate(120deg);
+            transform: rotate(120deg);
+    cursor: pointer;
+}
+
+.hexagon3-in1 {
+    color: black;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+}
+
+.hexagon3-in2 {
+    color: black;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+}
+
+.hexagon3-in2:hover {
+}
+
+
+.hexagon3-scale {
+    width: 200px;
+    height: 400px;
+}
+
+.red3 {
+    background: red;
+}
+.africa3 { background: #993; }
+.asia3 { background: #9F9; }
+.australia3 { background: #F99; }
+.europe3 { background: #39F; }
+.north-america3 { background: #FF8; }
+.south-america3 { background: #C36; }
+.water3 { background: #66C; }
+
+/*  hex-grid
+---------- */
+
+.hex3 {
+    margin: 20px auto 0 auto;
+    width: 3000px;
+    height: auto;
+}
+
+.hex3-grid-top {
+    display: inline-block;
+    margin: 0 110px -210px 110px;
+}
+
+.hex3-grid-mid-even {
+    display: inline-block;
+    margin: 0 auto -210px auto;
+}
+
+.hex3-grid-mid-odd {
+    display: inline-block;
+    margin: 0 110px -210px 110px;
+}
+
+.hex3-grid-bot {
+    display: inline-block;
+    margin: 0 110px;
+}
+
+.hex3-grid-top .hexagon3 {
+    float: left;
+    margin: 0px 10px;
+}
+
+.hex3-grid-mid-even .hexagon3 {
+    float: left;
+    margin: 0px 10px;
+}
+
+.hex3-grid-mid-odd .hexagon3 {
+    float: left;
+    margin: 0px 10px;
+}
+
+.hex3-grid-bot .hexagon3 {
+    float: left;
+    margin: 0px 10px;
+}

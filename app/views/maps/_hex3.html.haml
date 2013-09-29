@@ -1,0 +1,21 @@
+- if country
+  .hexagon3.hexagon3-scale
+    .hexagon3-in1
+      - if country.region.name == "Africa"
+        .hexagon3-in2.africa3= render 'country', country: country
+      - elsif country.region.name == "Asia"
+        .hexagon3-in2.asia3= render 'country', country: country
+      - elsif country.region.name == "Australia"
+        .hexagon3-in2.australia3= render 'country', country: country
+      - elsif country.region.name == "Europe"
+        .hexagon3-in2.europe3= render 'country', country: country
+      - elsif country.region.name == "North_America"
+        .hexagon3-in2.north-america3= render 'country', country: country
+      - elsif country.region.name == "South_America"
+        .hexagon3-in2.south-america3= render 'country', country: country
+      - else
+        .hexagon3-in2.red3= render 'country', country: country
+- else
+  .hexagon3.hexagon3-scale
+    .hexagon3-in1
+      .hexagon3-in2.water3

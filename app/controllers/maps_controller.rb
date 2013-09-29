@@ -7,6 +7,9 @@ class MapsController < ApplicationController
   def risk_map2
   end
 
+  def risk_map3
+  end
+
   # def select_attacking_troops
   # end
 
