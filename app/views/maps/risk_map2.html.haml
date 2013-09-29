@@ -1,0 +1,10 @@
+.hex2-container
+  - for x in 1..@grid.length-1
+    - if x.even?
+      %ol.even2
+        - for y in 1..@grid[x].length-1
+          = render 'hex2', country: @grid[x][y]
+    - else
+      %ol.odd2
+        - for y in 1..@grid[x].length-1
+          = render 'hex2', country: @grid[x][y]

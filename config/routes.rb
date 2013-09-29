@@ -1,6 +1,9 @@
 Zugfahrt::Application.routes.draw do
   root "maps#risk_map"
 
+  get 'map1' => 'maps#risk_map'
+  get 'map2' => 'maps#risk_map2'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

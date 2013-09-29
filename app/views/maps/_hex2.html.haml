@@ -1,0 +1,16 @@
+- if country
+  - if country.region.name == "Africa"
+    %li.hex2.africa2{id: country.id, tooltip: country.name}
+  - elsif country.region.name == "Asia"
+    %li.hex2.asia2{id: country.id, tooltip: country.name}
+  - elsif country.region.name == "Australia"
+    %li.hex2.australia2{id: country.id, tooltip: country.name}
+  - elsif country.region.name == "Europe"
+    %li.hex2.europe2{id: country.id, tooltip: country.name}
+  - elsif country.region.name == "North_America"
+    %li.hex2.north-america2{id: country.id, tooltip: country.name}
+  - elsif country.region.name == "South_America"
+    %li.hex2.south-america2{id: country.id, tooltip: country.name}
+      / = render 'country', country: country
+- else
+  %li.hex2.water2

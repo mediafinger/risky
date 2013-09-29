@@ -4,11 +4,14 @@ class MapsController < ApplicationController
   def risk_map
   end
 
-  def select_attacking_troops
+  def risk_map2
   end
 
-  def select_neighbour
-  end
+  # def select_attacking_troops
+  # end
+
+  # def select_neighbour
+  # end
 
 
 private

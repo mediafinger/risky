@@ -7,12 +7,11 @@
     .container
       .row
         .span24
-          %p
-            - flash.each do |key, value|
-              = content_tag(:div, value, :class => "round flash #{key}")
+          - flash.each do |key, value|
+            = content_tag(:div, value, :class => "round flash #{key}")
 
           %main
             = yield
 
-    %foot
-      <!-- Empty footer -->
+      %foot
+        <!-- Empty footer -->
