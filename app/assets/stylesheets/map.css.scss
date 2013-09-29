@@ -1,8 +1,27 @@
+.form {
+  width: 50px;
+
+  input {
+    width: 50px;
+  }
+
+  .submit-link {
+      background-color: transparent;
+      border: none;
+      color: black;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      margin-left: -5px;
+      text-decoration: none;
+    }
+}
+
+
 .map {
   background-color: #66C;
   border: 3px solid;
   float: left;
-  // margin-left: -400px;
   overflow: hidden;
   padding: 5px 30px 55px 5px;
 
@@ -17,6 +36,11 @@
   a .army {
     border-color: black;
     color: white;
+  }
+
+  .target {
+    border: 6px dotted black;
+    color: black;
   }
 
   .hex-row {
@@ -89,6 +113,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Alternative HEX SCSS */
 
 $hex2-size: 3em; // Only change size here. Best used with sizes from 5em - 10em.
@@ -151,6 +191,8 @@ ol.odd2 {
 .north-america2 { background: #FF8; }
 .south-america2 { background: #C36; }
 .water2 { background: #66C; }
+
+
 
 
 /* Another alternative HEX CSS */

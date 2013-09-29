@@ -1,31 +1,36 @@
+- if @select_troops
+  - template = "country_attacking"
+- else
+  - template = "country"
+
 - if country
   - if country.region.name == "Africa"
     .left.africa-left
-    .middle.africa= render 'country', country: country
+    .middle.africa= render template, country: country
     .right.africa-right
   - elsif country.region.name == "Asia"
     .left.asia-left
-    .middle.asia= render 'country', country: country
+    .middle.asia= render template, country: country
     .right.asia-right
   - elsif country.region.name == "Australia"
     .left.australia-left
-    .middle.australia= render 'country', country: country
+    .middle.australia= render template, country: country
     .right.australia-right
   - elsif country.region.name == "Europe"
     .left.europe-left
-    .middle.europe= render 'country', country: country
+    .middle.europe= render template, country: country
     .right.europe-right
   - elsif country.region.name == "North_America"
     .left.north-america-left
-    .middle.north-america= render 'country', country: country
+    .middle.north-america= render template, country: country
     .right.north-america-right
   - elsif country.region.name == "South_America"
     .left.south-america-left
-    .middle.south-america= render 'country', country: country
+    .middle.south-america= render template, country: country
     .right.south-america-right
   - else
     .left
-    .middle= render 'country', country: country
+    .middle= render template, country: country
     .right
 - else
   .left.water-left

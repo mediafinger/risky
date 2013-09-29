@@ -1,7 +1,10 @@
 %div= "#{country.player.name}"
-- if country.player.active?
-  %a(href="#")
+
+- if country.player.active? && country.army.size > 1
+  %a(href="/select_attacking_troops?game=#{params[:game]}&country_id=#{country.id}")
     %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+
 - else
   %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+
 %div= "#{country.name.split("_").join(" ")}"

@@ -5,6 +5,12 @@ Zugfahrt::Application.routes.draw do
   get 'map2' => 'maps#risk_map2'
   get 'map3' => 'maps#risk_map3'
 
+  get 'select_attacking_troops'  => 'maps#select_attacking_troops'
+  # get 'select_neighbour'        => 'maps#select_neighbour'
+
+  post 'select_neighbour'   => 'maps#select_neighbour'
+  post 'next_player'        => 'maps#next_player'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

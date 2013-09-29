@@ -131,5 +131,3 @@ game = Game.create
 game.add_players(players)
 game.distribute_countries
 
-game.players.first.update_attributes!(active: true)
-

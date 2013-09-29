@@ -1,10 +1,30 @@
-.map
-  - for x in 1..@grid.length-1
-    .hex-row
-      - for y in 1..@grid[x].length-1
-        - if y.even?
-          .hex.even
-            = render 'hex', country: @grid[x][y], x: x, y: y
-        - else
-          .hex
-            = render 'hex', country: @grid[x][y], x: x, y: y
+- if @select_troops
+  .map
+    = form_for(:army, :url => select_neighbour_path) do |f|
+      = hidden_field_tag "game", params[:game]
+      = hidden_field_tag "attacking_country", @attacking_country.id
+      - for x in 1..@grid.length-1
+        .hex-row
+          - for y in 1..@grid[x].length-1
+            - if y.even?
+              .hex.even
+                = render 'hex', country: @grid[x][y]
+            - else
+              .hex
+                = render 'hex', country: @grid[x][y]
+
+- else
+  .map
+    - for x in 1..@grid.length-1
+      .hex-row
+        - for y in 1..@grid[x].length-1
+          - if y.even?
+            .hex.even
+              = render 'hex', country: @grid[x][y]
+          - else
+            .hex
+              = render 'hex', country: @grid[x][y]
+
+
+.side-bar
+  =button_to "Next Player", next_player_path(game: params[:game])
