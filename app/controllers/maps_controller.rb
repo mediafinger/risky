@@ -3,6 +3,8 @@ class MapsController < ApplicationController
 
   def risk_map
     puts "XXX: #{params.inspect}"
+
+    @pool = true if current_player.pool > 0
   end
 
   def risk_map2
@@ -12,20 +14,17 @@ class MapsController < ApplicationController
   end
 
   def select_attacking_troops
-    puts "XXX: #{params.inspect}"
-
     @select_troops = Country.part_of(game).where(id: params[:country_id]).first.army.size - 1
-
     @attacking_country = Country.part_of(game).where(id: params[:country_id]).first
 
     render "risk_map"
   end
 
-  def select_neighbour
+  def select_country_to_attack
     puts "XXX: #{params.inspect}"
     country_id = params["country_id"].first[0]
 
-    attacker = Country.part_of(game).where(id: params[:attacking_country]).first
+    attacker = current_player.countries.where(id: params[:attacking_country]).first
     defender = Country.part_of(game).where(id: country_id).first
     troops   = params[:troops].to_i
 
@@ -38,17 +37,24 @@ class MapsController < ApplicationController
       troops -= attacker_army_size - attacker.army.size
     end
 
-    Country.part_of(game).where(id: country_id).first.player.reload if @victory
-
+    # TODO how to prevent caching of old country data and color?
     render "risk_map"
   end
 
   def next_player
     game.next_player
+    @pool = true if current_player.pool > 0
 
     render "risk_map"
   end
 
+  def draft_troops
+    country = current_player.countries.part_of(@game).where(id: params[:country_id]).first
+    country.army.add_one
+    @pool = true if current_player.pool > 0
+
+    render "risk_map"
+  end
 
 private
 
@@ -59,5 +65,9 @@ private
 
   def game
     @game ||= Game.find(params[:game])
+  end
+
+  def current_player
+    game.players.where(active: true).first
   end
 end

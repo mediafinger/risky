@@ -1,7 +1,5 @@
 %div= "#{country.player.name}"
 
-- puts "CID: #{@attacking_country.id} PARAMS: #{params.inspect} AND #{@select_troops}" if @attacking_country
-
 - if @attacking_country.id == country.id
   .form
     %input.submit-link{ id: "troops", name: "troops", type: "number", min: 1, max: @select_troops, step: 1, value: @select_troops }
@@ -11,8 +9,11 @@
     %a(href="/select_attacking_troops?game=#{params[:game]}&country_id=#{country.id}")
       %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
 
+  - elsif country.player.active? && country.army.size == 1
+    %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+
   - elsif @attacking_country && @attacking_country.countries.include?(country)
-    %div.army.target{ id: country.id, style: "background-color: #{country.player.color};" }
+    %div.army.target{ id: country.id, style: "background-color: #{country.player.color};", "data-no-turbolink" => "true" }
       .form
         %input.submit-link{name: "country_id[#{country.id}]", type: "submit", value: country.army.size }
 
@@ -20,7 +21,3 @@
     %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
 
 %div= "#{country.name.split("_").join(" ")}"
-
-
-/ %a(href="/select_neighbour?game=#{params[:game]}&country_id=#{country.id}&attacking_country=#{@attacking_country.id}&troops=#{f.inspect}")
-

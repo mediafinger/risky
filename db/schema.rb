@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20130922114650) do
     t.integer  "game_id"
     t.boolean  "active",     default: false
     t.string   "name"
+    t.integer  "pool"
     t.integer  "rank"
     t.string   "color"
     t.datetime "created_at"

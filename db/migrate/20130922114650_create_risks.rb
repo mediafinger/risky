@@ -41,6 +41,7 @@ class CreateRisks < ActiveRecord::Migration
       t.integer  :game_id
       t.boolean  :active,      :default => false
       t.string   :name
+      t.integer  :pool,        :default => 0
       t.integer  :rank
       t.string   :color
       t.timestamps

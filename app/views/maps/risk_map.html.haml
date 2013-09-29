@@ -1,6 +1,6 @@
 - if @select_troops
   .map
-    = form_for(:army, :url => select_neighbour_path) do |f|
+    = form_for(:army, :url => select_country_to_attack_path) do |f|
       = hidden_field_tag "game", params[:game]
       = hidden_field_tag "attacking_country", @attacking_country.id
       - for x in 1..@grid.length-1

@@ -36,13 +36,14 @@ class Game < ActiveRecord::Base
     while x < countries.length - 1 do
       self.players.each do |player|
         countries[x].update_attributes!(player_id: player.id)
-        Army.create!(game: self, player: player, country: countries[x], size: 1)
+        Army.create!(game: self, player: player, country: countries[x], size: rand(1..5))
 
         x += 1
         break if x >= countries.length
       end
     end
 
+    current_player.update_attributes!(pool: troops_per_turn)
     self
   end
 
@@ -59,6 +60,8 @@ class Game < ActiveRecord::Base
       current_player.update_attributes!(active: false) &&
         self.players.where(rank: turn + 1).first.update_attributes!(active: true)
     end
+
+    current_player.update_attributes!(pool: troops_per_turn)
   end
 
   def end_game
@@ -101,7 +104,7 @@ private
 
   def set_neighbours
     self.countries.each do |country|
-      neigbour_names = Country.where(name: country.name).first.countries.pluck(:name)
+      neigbour_names = Country.where(game_id: nil, name: country.name).first.countries.pluck(:name)
 
       neigbour_names.each do |neighbour|
         country.countries << [self.countries.where(name: neighbour).first]
@@ -111,6 +114,10 @@ private
 
   def create_cards()
     Card.create_set(self.id)
+  end
+
+  def troops_per_turn
+    [(current_player.countries.part_of(self).length / 3).floor, 3].max
   end
 
 end
