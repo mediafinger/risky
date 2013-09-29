@@ -6,7 +6,6 @@ if Rails.env == "development"
   Game.destroy_all
   Player.destroy_all
   Region.destroy_all
-  Round.destroy_all
 end
 
 puts "Creating Map"
@@ -131,8 +130,6 @@ puts "Creating Game ..."
 game = Game.create
 game.add_players(players)
 game.distribute_countries
-game.create_cards
 
 game.players.first.update_attributes!(active: true)
 
-# Round.create!()

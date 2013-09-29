@@ -74,11 +74,4 @@ ActiveRecord::Schema.define(version: 20130922114650) do
     t.datetime "updated_at"
   end
 
-  create_table "rounds", force: true do |t|
-    t.integer  "game_id"
-    t.integer  "rank"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
 end

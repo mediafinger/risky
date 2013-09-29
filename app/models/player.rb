@@ -7,4 +7,7 @@ class Player < ActiveRecord::Base
 
   scope :part_of,      lambda { |game|   where(game_id:    game.id) }
 
+  def lost?
+    countries.length < 1
+  end
 end

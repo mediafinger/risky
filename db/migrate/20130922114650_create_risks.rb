@@ -55,11 +55,5 @@ class CreateRisks < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :rounds do |t|
-      t.integer  :game_id
-      t.integer  :rank
-      t.timestamps
-    end
-
   end
 end

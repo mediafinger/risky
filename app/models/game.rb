@@ -4,17 +4,26 @@ class Game < ActiveRecord::Base
   has_many :countries
   has_many :players
   has_many :regions
-  has_many :rounds
 
   after_create :copy_regions
-  after_create :copy_countries
+  after_create :create_cards
+
+  def current_player
+    self.players.where(active: true).first
+  end
 
   def add_players(players)
     rank = 1
     players.shuffle.each do |player|
-      player.update_attributes!(game_id: self.id, rank: rank)
+      if rank == 1
+        player.update_attributes!(game_id: self.id, rank: rank, active: true)
+      else
+        player.update_attributes!(game_id: self.id, rank: rank, active: false)
+      end
       rank += 1
     end
+
+    self
   end
 
   def distribute_countries
@@ -33,10 +42,23 @@ class Game < ActiveRecord::Base
         break if x >= countries.length
       end
     end
+
+    self
   end
 
-  def create_cards()
-    Card.create_set(self.id)
+  # TODO add check if game is finished
+  # TODO add check for players without countries
+  def next_player
+    number_of_players = self.players.length
+    turn = current_player.rank
+
+    if turn == number_of_players
+      current_player.update_attributes!(active: false) &&
+        self.players.where(rank: 1).first.update_attributes!(active: true)
+    else
+      current_player.update_attributes!(active: false) &&
+        self.players.where(rank: turn + 1).first.update_attributes!(active: true)
+    end
   end
 
   def end_game
@@ -44,11 +66,12 @@ class Game < ActiveRecord::Base
     self.cards.destroy
     self.countries.destroy
     self.regions.destroy
-    self.rounds.destroy
 
     self.players.each do |player|
-      player.update_attributes!(game_id: nil, rank: nil)
+      player.update_attributes!(game_id: nil, rank: nil, active: false)
     end
+
+    self.destroy
   end
 
 
@@ -60,16 +83,34 @@ private
     regions.each do |region|
       game_region = region.dup
       game_region.update_attributes!(game_id: self.id)
+
+      copy_countries(region, game_region)
     end
+
+    set_neighbours
   end
 
-  def copy_countries
-    countries = Country.where(game_id: nil).to_a
+  def copy_countries(region, game_region)
+    countries = Country.where(game_id: nil, region_id: region.id).to_a
 
     countries.each do |country|
       game_country = country.dup
-      game_country.update_attributes!(game_id: self.id)
+      game_country.update_attributes!(game_id: self.id, region_id: game_region.id)
     end
+  end
+
+  def set_neighbours
+    self.countries.each do |country|
+      neigbour_names = Country.where(name: country.name).first.countries.pluck(:name)
+
+      neigbour_names.each do |neighbour|
+        country.countries << [self.countries.where(name: neighbour).first]
+      end
+    end
+  end
+
+  def create_cards()
+    Card.create_set(self.id)
   end
 
 end
