@@ -33,8 +33,9 @@ class MapsController < ApplicationController
     attacker_army_size = attacker.army.size
 
     while !@victory && troops > 0
-      @victory = conflict.attack(troops)
-      troops -= attacker_army_size - attacker.army.size
+      @victory            = conflict.attack(troops)
+      troops             -= attacker_army_size - attacker.army.size
+      attacker_army_size  = attacker.army.size
     end
 
     # TODO how to prevent caching of old country data and color?
