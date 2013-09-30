@@ -1,3 +1,18 @@
+form {
+  margin: 0;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
 .form {
   width: 50px;
 
@@ -5,21 +20,22 @@
     width: 50px;
   }
 
-  .submit-link {
-      background-color: transparent;
-      border: none;
-      color: black;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      margin-left: -5px;
-      text-decoration: none;
-    }
+  input[type=number] {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-size: 22px;
+    height: 36px;
+    margin: 0;
+    padding: 0 0 0 15px;
+    width: 60px;
+  }
 }
 
 
 .map {
-  background-color: #66C;
+  background-color: #66D;
   border: 3px solid;
   float: left;
   overflow: hidden;
@@ -31,6 +47,17 @@
     font-size: 16px;
     font-weight: bold;
     padding: 5px 0;
+
+  }
+
+  .attacker {
+    border: 6px solid black;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    width: 50px;
   }
 
   a .army {

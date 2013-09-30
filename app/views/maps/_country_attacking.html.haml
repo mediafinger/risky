@@ -2,7 +2,8 @@
 
 - if @attacking_country.id == country.id
   .form
-    %input.submit-link{ id: "troops", name: "troops", type: "number", min: 1, max: @select_troops, step: 1, value: @select_troops }
+    %div.attacker{ id: country.id, style: "background-color: #{country.player.color};" }
+      %input{ id: "troops", name: "troops", type: "number", min: 1, max: @select_troops, step: 1, value: @select_troops }
 
 - else
   - if country.player.active? && country.army.size > 1
@@ -15,7 +16,7 @@
   - elsif @attacking_country && @attacking_country.countries.include?(country)
     %div.army.target{ id: country.id, style: "background-color: #{country.player.color};", "data-no-turbolink" => "true" }
       .form
-        %input.submit-link{name: "country_id[#{country.id}]", type: "submit", value: country.army.size }
+        %input{name: "country_id[#{country.id}]", type: "submit", value: country.army.size }
 
   - else
     %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
