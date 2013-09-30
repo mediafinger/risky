@@ -1,3 +1,6 @@
+- if country.id == @occupied_country.to_i
+  - country.reload.player
+
 %div= "#{country.player.name}"
 
 - if country.player.active? && country.army.size > 1

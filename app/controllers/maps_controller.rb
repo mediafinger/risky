@@ -38,6 +38,7 @@ class MapsController < ApplicationController
     end
 
     # TODO how to prevent caching of old country data and color?
+    @occupied_country = country_id if @victory
     render "risk_map"
   end
 
