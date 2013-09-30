@@ -40,10 +40,11 @@ class CreateRisks < ActiveRecord::Migration
     create_table :players do |t|
       t.integer  :game_id
       t.boolean  :active,      :default => false
+      t.string   :color
       t.string   :name
+      t.integer  :new_cards,   :default => 0
       t.integer  :pool,        :default => 0
       t.integer  :rank
-      t.string   :color
       t.timestamps
     end
 

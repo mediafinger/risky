@@ -8,9 +8,6 @@ class Game < ActiveRecord::Base
   after_create :copy_regions
   after_create :create_cards
 
-  def current_player
-    self.players.where(active: true).first
-  end
 
   def add_players(players)
     rank = 1
@@ -24,6 +21,10 @@ class Game < ActiveRecord::Base
     end
 
     self
+  end
+
+  def current_player
+    self.players.where(active: true).first
   end
 
   def distribute_countries
@@ -44,25 +45,36 @@ class Game < ActiveRecord::Base
       end
     end
 
-    current_player.update_attributes!(pool: troops_per_turn)
+    current_player.update_attributes!(pool: troops_per_turn, new_cards: 0)
     self
   end
 
-  # TODO add check if game is finished
-  # TODO add check for players without countries
   def next_player
-    number_of_players = self.players.length
-    turn = current_player.rank
+    hand_out_cards
 
-    if turn == number_of_players
-      current_player.update_attributes!(active: false) &&
-        self.players.where(rank: 1).first.update_attributes!(active: true)
-    else
-      current_player.update_attributes!(active: false) &&
-        self.players.where(rank: turn + 1).first.update_attributes!(active: true)
+    player = the_next_player(current_player.rank, self.players.length)
+
+    Player.transaction do
+      current_player.update_attributes!(active: false)
+      player.update_attributes!(active: true)
     end
 
-    current_player.update_attributes!(pool: troops_per_turn)
+    current_player.update_attributes!(pool: troops_per_turn, new_cards: 0)
+  end
+
+  def the_next_player(previous_player_rank, number_of_players)
+    player = nil
+    if previous_player_rank == number_of_players
+      player = self.players.where(rank: 1).first
+    else
+      player = self.players.where(rank: previous_player_rank + 1).first
+    end
+
+    if player.countries.part_of(self).length > 0
+      return player
+    else
+      return the_next_player(player.rank, number_of_players)
+    end
   end
 
   def end_game
@@ -80,6 +92,15 @@ class Game < ActiveRecord::Base
 
 
 private
+
+  def hand_out_cards
+    return unless current_player.new_cards > 0
+
+    Player.transaction do
+      current_player.cards << self.cards.where(player_id: nil).shuffle.first
+      current_player.update_attributes!(new_cards: 0)
+    end
+  end
 
   def copy_regions
     regions = Region.where(game_id: nil).to_a

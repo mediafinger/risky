@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 20130922114650) do
   create_table "players", force: true do |t|
     t.integer  "game_id"
     t.boolean  "active",     default: false
-    t.string   "name"
-    t.integer  "pool"
-    t.integer  "rank"
     t.string   "color"
+    t.string   "name"
+    t.integer  "new_cards",  default: 0
+    t.integer  "pool",       default: 0
+    t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

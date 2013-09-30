@@ -78,8 +78,10 @@ class Conflict
       @defender.update_attributes!(player_id: @attacker.player_id)
       @attacker.army.update_attributes!(size: @attacker.army.size - occupying_forces)
       Army.create!(player: @attacker.player, country_id: @defender.id, size: occupying_forces)
+      @attacker.player.update_attributes(new_cards: @attacker.player.new_cards + 1)
       Notificator.put "#{@attacker.player.name} beats #{defending_player_name} and occupies #{@defender.name} with #{occupying_forces} armies from #{@attacker.name}"
     end
+
     @defender.region.change_owner(@defender.player)
   end
 
