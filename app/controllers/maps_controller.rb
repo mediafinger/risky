@@ -32,7 +32,7 @@ class MapsController < ApplicationController
     @victory = false
     attacker_army_size = attacker.army.size
 
-    while !@victory && troops > 1
+    while !@victory && troops > 0
       @victory = conflict.attack(troops)
       troops -= attacker_army_size - attacker.army.size
     end
