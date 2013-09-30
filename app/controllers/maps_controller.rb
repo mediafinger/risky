@@ -13,14 +13,14 @@ class MapsController < ApplicationController
   def risk_map3
   end
 
-  def select_attacking_troops
-    @select_troops = Country.part_of(game).where(id: params[:country_id]).first.army.size - 1
-    @attacking_country = Country.part_of(game).where(id: params[:country_id]).first
+  def show_nearby_enemies
+    @attacking_country = Country.part_of(game).belonging_to(current_player).where(id: params[:country_id]).first
+    @select_troops = @attacking_country.army.size - 1
 
     render "risk_map"
   end
 
-  def select_country_to_attack
+  def attack_country
     puts "XXX: #{params.inspect}"
     country_id = params["country_id"].first[0]
 
@@ -39,6 +39,33 @@ class MapsController < ApplicationController
 
     # TODO how to prevent caching of old country data and color?
     @occupied_country = country_id if @victory
+    render "risk_map"
+  end
+
+  def end_turn
+    @distribution_phase = true
+
+    render "risk_map"
+  end
+
+  def show_nearby_friends
+    @distribution_phase = true
+    @distributing_country = Country.part_of(game).belonging_to(current_player).where(id: params[:country_id]).first
+    @troops_to_move = @distributing_country.army.size - 1
+
+    render "risk_map"
+  end
+
+  def move_troops
+    @distribution_phase = true
+    country_id = params["country_id"].first[0]
+
+    country_from = current_player.countries.part_of(@game).where(id: params[:country_from]).first
+    country_to   = current_player.countries.part_of(@game).where(id: country_id).first
+    troops       = params[:troops].to_i
+
+    country_from.army.move_to(country_to, troops)
+
     render "risk_map"
   end
 

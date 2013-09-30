@@ -5,9 +5,12 @@ Zugfahrt::Application.routes.draw do
   get 'map2' => 'maps#risk_map2'
   get 'map3' => 'maps#risk_map3'
 
-  get 'select_attacking_troops'   => 'maps#select_attacking_troops'
-  post 'select_country_to_attack' => 'maps#select_country_to_attack'
   post 'draft_troops'             => 'maps#draft_troops'
+  get  'show_nearby_enemies'      => 'maps#show_nearby_enemies'
+  post 'attack_country'           => 'maps#attack_country'
+  post 'end_turn'                 => 'maps#end_turn'
+  get  'show_nearby_friends'      => 'maps#show_nearby_friends'
+  post 'move_troops'              => 'maps#move_troops'
   post 'next_player'              => 'maps#next_player'
 
   # The priority is based upon order of creation: first created -> highest priority.
