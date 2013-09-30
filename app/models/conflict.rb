@@ -80,6 +80,7 @@ class Conflict
       Army.create!(player: @attacker.player, country_id: @defender.id, size: occupying_forces)
       Notificator.put "#{@attacker.player.name} beats #{defending_player_name} and occupies #{@defender.name} with #{occupying_forces} armies from #{@attacker.name}"
     end
+    @defender.region.change_owner(@defender.player)
   end
 
 end

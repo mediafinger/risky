@@ -37,6 +37,7 @@ class Game < ActiveRecord::Base
       self.players.each do |player|
         countries[x].update_attributes!(player_id: player.id)
         Army.create!(game: self, player: player, country: countries[x], size: rand(1..5))
+        countries[x].region.change_owner(player)
 
         x += 1
         break if x >= countries.length
@@ -117,7 +118,15 @@ private
   end
 
   def troops_per_turn
-    [(current_player.countries.part_of(self).length / 3).floor, 3].max
+    [(current_player.countries.part_of(self).length / 3).floor, 3].max + region_bonus
   end
 
+  def region_bonus
+    bonus = 0
+    self.regions.each do |region|
+      bonus += region.bonus_for(current_player)
+    end
+
+    bonus
+  end
 end
