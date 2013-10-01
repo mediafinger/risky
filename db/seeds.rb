@@ -121,14 +121,13 @@ west_au.countries       << [guinea, east_au, indonesia]
 
 puts "Creating Players ..."
 players = [
-  Player.create!(name: "Danny", color: :red),
-  Player.create!(name: "Andy",  color: :blue),
-  Player.create!(name: "Andre", color: :yellow),
-  Player.create!(name: "Jens",  color: :green)
+  Player.create!(name: "Danny", color: "#FF0000"),
+  Player.create!(name: "Andy",  color: "#00A0FF"),
+  Player.create!(name: "Jens",  color: "#F3FF00")
 ]
 
 puts "Creating Game ..."
-game = Game.create
+game = Game.create(name: "Testspiel", regions_to_win: 3)
 game.add_players(players)
 game.distribute_countries
 

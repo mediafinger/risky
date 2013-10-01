@@ -150,4 +150,5 @@ private
 
     bonus
   end
+
 end

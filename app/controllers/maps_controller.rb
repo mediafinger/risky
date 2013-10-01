@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+  respond_to :html
   before_filter :load_grid
 
   def risk_map
@@ -6,12 +7,6 @@ class MapsController < ApplicationController
 
     @player_hint = "Risky!"
     @pool = true if current_player.pool > 0
-  end
-
-  def risk_map2
-  end
-
-  def risk_map3
   end
 
   def show_nearby_enemies
@@ -82,10 +77,19 @@ class MapsController < ApplicationController
 
   def next_player
     game.next_player
-    @pool = true if current_player.pool > 0
+    current_player.reload.countries.reload
 
-    @player_hint = "It's <span style='background-color: #{current_player.color}; font-weight: bold;'>&nbsp;#{current_player.name}&nbsp;</span></b>'s turn!<br />You get #{current_player.pool} new troops<br />click on your countries to distribute them.".html_safe
-    render "risk_map"
+    current_players_regions = current_player.regions.part_of(game).pluck(:name)
+    if current_players_regions.length >= game.regions_to_win
+      @player_hint = "<span style='background-color: #{current_player.color}; font-weight: bold;'>&nbsp;#{current_player.name}&nbsp;</span><br />holds this regions occupied:<br />#{current_players_regions.join('<br />')}<br />and wins the game.<br /><br />CONGRATULATIONS!".html_safe
+      @game_over = true
+      render "risk_map"
+    else
+      @pool = true if current_player.pool > 0
+
+      @player_hint = "It's <span style='background-color: #{current_player.color}; font-weight: bold;'>&nbsp;#{current_player.name}&nbsp;</span>'s turn!<br />You get #{current_player.pool} new troops<br />click on your countries to distribute them.".html_safe
+      render "risk_map"
+    end
   end
 
   def draft_troops
@@ -99,6 +103,14 @@ class MapsController < ApplicationController
     end
     render "risk_map"
   end
+
+# Alternative Maps
+  def risk_map2
+  end
+
+  def risk_map3
+  end
+
 
 private
 

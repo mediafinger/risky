@@ -1,7 +1,6 @@
-- if country.player.active? && country.army.size > 1
+- if country.player.active? && country.army.size > 1 && !@game_over
   %a(href="/show_nearby_enemies?game=#{params[:game]}&country_id=#{country.id}")
     = render "country_default", country: country
 
 - else
   = render "country_default", country: country
-

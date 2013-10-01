@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130922114650) do
 
   create_table "games", force: true do |t|
     t.string   "name"
+    t.integer  "regions_to_win"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

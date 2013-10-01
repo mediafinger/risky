@@ -1,7 +1,9 @@
-- if @select_troops
-  - template = "country_attacking"
+- if @game_over
+  - template = "country"
 - elsif @pool
   - template = "country_draft"
+- elsif @select_troops
+  - template = "country_attacking"
 - elsif @distribution_phase
   - template = "country_distribution"
 - else

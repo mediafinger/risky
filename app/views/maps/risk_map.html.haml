@@ -6,10 +6,11 @@
   .side-bar
     .hint= @player_hint
 
-    - if @distribution_phase
-      =button_to "Next Player", next_player_path(game: params[:game])
-    - else
-      =button_to "End Turn", end_turn_path(game: params[:game])
+    - unless @game_over
+      - if @distribution_phase
+        =button_to "Next Player", next_player_path(game: params[:game])
+      - else
+        =button_to "End Turn", end_turn_path(game: params[:game])
 
   .map
     = form_for(:army, :url => url) do |f|

@@ -8,9 +8,11 @@ class Region < ActiveRecord::Base
   scope :belonging_to, lambda { |player| where(player_id:  player.id) }
 
   def change_owner(player)
-    return false unless self.fully_occupied?
-
-    self.update_attributes!(player_id: player.id)
+    if self.fully_occupied?
+      self.update_attributes!(player_id: player.id)
+    else
+      self.update_attributes!(player_id: nil) if self.player_id
+    end
   end
 
   def fully_occupied?

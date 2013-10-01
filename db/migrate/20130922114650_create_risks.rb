@@ -28,6 +28,7 @@ class CreateRisks < ActiveRecord::Migration
 
     create_table :games do |t|
       t.string   :name
+      t.integer  :regions_to_win
       t.timestamps
     end
 
