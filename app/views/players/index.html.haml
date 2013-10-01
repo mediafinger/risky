@@ -1,0 +1,19 @@
+%h2 List of players
+%table
+  %thead
+    %tr
+      %th Name
+      %th Color
+      %th
+      %th
+      %th
+  %tbody
+    - @players.each do |player|
+      %tr
+        %td= player.name
+        %td{ style: "background-color: #{player.color}; border: 1px solid black; padding: 3px; width: 120px;" }
+        %td= link_to 'Show', player
+        %td= link_to 'Edit', edit_player_path(player)
+        %td= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Player', new_player_path

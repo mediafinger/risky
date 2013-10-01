@@ -1,0 +1,21 @@
+#notice
+  = notice
+
+%h2 Show player
+
+%p
+  %b Name:
+  = @player.name
+%p
+  %b Color:
+  = "(#{@player.color.upcase})"
+  %div{ style: "background-color: #{@player.color}; border: 1px solid black; height: 10px; padding: 3px; width: 120px;" }
+%p
+  %b Current game:
+  - if @player.game_id
+    = "#{@player.game.name} (id: #{@player.game_id})"
+  - else
+    (none)
+
+= link_to 'Edit', edit_player_path(@player)
+= link_to 'List', players_path
