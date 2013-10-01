@@ -1,13 +1,7 @@
-- if country.id == @occupied_country.to_i
-  - country.reload.player
-
-%div= "#{country.player.name}"
-
 - if country.player.active? && country.army.size > 1
   %a(href="/show_nearby_enemies?game=#{params[:game]}&country_id=#{country.id}")
-    %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+    = render "country_default", country: country
 
 - else
-  %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+  = render "country_default", country: country
 
-%div= "#{country.name.split("_").join(" ")}"

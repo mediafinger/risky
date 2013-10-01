@@ -1,24 +1,16 @@
-%div= "#{country.player.name}"
-
 - if @attacking_country.id == country.id
-  .form
-    %div.attacker{ id: country.id, style: "background-color: #{country.player.color};" }
-      %input{ id: "troops", name: "troops", type: "number", min: 1, max: @select_troops, step: 1, value: @select_troops }
+  = render "country_select_troops", country: country, troops: @select_troops
 
 - else
   - if country.player.active? && country.army.size > 1
     %a(href="/show_nearby_enemies?game=#{params[:game]}&country_id=#{country.id}")
-      %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+      = render "country_default", country: country
 
   - elsif country.player.active? && country.army.size == 1
-    %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
+    = render "country_default", country: country
 
   - elsif @attacking_country && @attacking_country.countries.include?(country)
-    %div.army.target{ id: country.id, style: "background-color: #{country.player.color};"}
-      .form
-        %input{name: "country_id[#{country.id}]", type: "submit", value: country.army.size }
+    = render "country_submit_target", country: country
 
   - else
-    %div.army{ id: country.id, style: "background-color: #{country.player.color};" }= "#{country.army.size}"
-
-%div= "#{country.name.split("_").join(" ")}"
+    = render "country_default", country: country

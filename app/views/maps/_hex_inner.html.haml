@@ -1,0 +1,17 @@
+- if @select_troops
+  - template = "country_attacking"
+- elsif @pool
+  - template = "country_draft"
+- elsif @distribution_phase
+  - template = "country_distribution"
+- else
+  - template = "country"
+
+- if @occupied_country && @occupied_country.to_i == country.id
+  - country.reload.player
+
+%div= "#{country.player.name}"
+
+= render template, country: country
+
+%div= "#{country.name.split("_").join(" ")}"

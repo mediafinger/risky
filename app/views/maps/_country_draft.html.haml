@@ -1,11 +1,6 @@
-%div= "#{country.player.name}"
-
 - if country.player.active?
-  %div.army.target{ id: country.id, style: "background-color: #{country.player.color};" }
-    =button_to "#{country.army.size}", draft_troops_path(game: params[:game], country_id: country.id, pool: @pool)
+  .army.target{ id: country.id, style: "background-color: #{country.player.color};" }
+    =button_to "#{country.army.size}", draft_troops_path(game: params[:game], country_id: country.id)
 
 - else
-  %div.army{ id: country.id, style: "background-color: #{country.player.color};" }
-    = "#{country.army.size}"
-
-%div= "#{country.name.split("_").join(" ")}"
+  = render "country_default", country: country

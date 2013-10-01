@@ -1,41 +1,12 @@
-- if @select_troops
-  - template = "country_attacking"
-- elsif @pool
-  - template = "country_draft"
-- elsif @distribution_phase
-  - template = "country_distribution"
-- else
-  - template = "country"
-
 - if country
-  - if country.region.name == "Africa"
-    .left.africa-left
-    .middle.africa= render template, country: country
-    .right.africa-right
-  - elsif country.region.name == "Asia"
-    .left.asia-left
-    .middle.asia= render template, country: country
-    .right.asia-right
-  - elsif country.region.name == "Australia"
-    .left.australia-left
-    .middle.australia= render template, country: country
-    .right.australia-right
-  - elsif country.region.name == "Europe"
-    .left.europe-left
-    .middle.europe= render template, country: country
-    .right.europe-right
-  - elsif country.region.name == "North_America"
-    .left.north-america-left
-    .middle.north-america= render template, country: country
-    .right.north-america-right
-  - elsif country.region.name == "South_America"
-    .left.south-america-left
-    .middle.south-america= render template, country: country
-    .right.south-america-right
-  - else
-    .left
-    .middle= render template, country: country
-    .right
+  - region_class = country.region.name.downcase.gsub('_', '-')
+  - region_class_left  = "#{region_class}-left"
+  - region_class_right = "#{region_class}-right"
+
+  .left{ class: region_class_left }
+  .middle{ class: region_class }= render "hex_inner", country: country
+  .right{ class: region_class_right }
+
 - else
   .left.water-left
   .middle.water
