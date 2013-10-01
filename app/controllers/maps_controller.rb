@@ -4,6 +4,7 @@ class MapsController < ApplicationController
   def risk_map
     puts "XXX: #{params.inspect}"
 
+    @player_hint = "Risky!"
     @pool = true if current_player.pool > 0
   end
 
@@ -17,6 +18,7 @@ class MapsController < ApplicationController
     @attacking_country = Country.part_of(game).belonging_to(current_player).where(id: params[:country_id]).first
     @select_troops = @attacking_country.army.size - 1
 
+    @player_hint = "To attack with the army of #{@attacking_country.name} :<br /> 1. Select the number of troops<br />2. select the neighbouring enemy you want to attack".html_safe
     render "risk_map"
   end
 
@@ -38,7 +40,12 @@ class MapsController < ApplicationController
       attacker_army_size  = attacker.army.size
     end
 
-    # TODO how to prevent caching of old country data and color?
+    if @victory
+      @player_hint = "#{attacker.name} attacked #{defender.name}<br />and invaded it with #{defender.reload.army.size} troops.<br />Keep rollin'!".html_safe
+    else
+      @player_hint = "#{attacker.name} attacked #{defender.name}<br />and lost #{params[:troops]} troops.<br />Don't give up!".html_safe
+    end
+
     @occupied_country = country_id if @victory
     render "risk_map"
   end
@@ -46,6 +53,7 @@ class MapsController < ApplicationController
   def end_turn
     @distribution_phase = true
 
+    @player_hint = "Move your troops!<br />Select one army to start with.".html_safe
     render "risk_map"
   end
 
@@ -54,6 +62,7 @@ class MapsController < ApplicationController
     @distributing_country = Country.part_of(game).belonging_to(current_player).where(id: params[:country_id]).first
     @troops_to_move = @distributing_country.army.size - 1
 
+    @player_hint = "To move troops from #{@distributing_country.name} :<br /> 1. Select the number of troops<br />2. select one of your neighbouring countries".html_safe
     render "risk_map"
   end
 
@@ -67,6 +76,7 @@ class MapsController < ApplicationController
 
     country_from.army.move_to(country_to, troops)
 
+    @player_hint = "Moved #{troops} troops from #{country_from.name} to #{country_to.name}.<br />Keep moving!".html_safe
     render "risk_map"
   end
 
@@ -74,14 +84,19 @@ class MapsController < ApplicationController
     game.next_player
     @pool = true if current_player.pool > 0
 
+    @player_hint = "It's <span style='background-color: #{current_player.color}; font-weight: bold;'>&nbsp;#{current_player.name}&nbsp;</span></b>'s turn!<br />You get #{current_player.pool} new troops<br />click on your countries to distribute them.".html_safe
     render "risk_map"
   end
 
   def draft_troops
     country = current_player.countries.part_of(@game).where(id: params[:country_id]).first
     country.army.add_one
-    @pool = true if current_player.pool > 0
-
+    if current_player.pool > 0
+      @pool = true
+      @player_hint = "Added one army to #{country.name}<br />#{current_player.pool} more left.".html_safe
+    else
+      @player_hint = "Select the country you want to attack from!"
+    end
     render "risk_map"
   end
 

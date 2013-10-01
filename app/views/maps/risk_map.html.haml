@@ -1,57 +1,31 @@
 - url = attack_country_path if @select_troops
 - url = move_troops_path    if @troops_to_move
 
-.map
-  = form_for(:army, :url => url) do |f|
-    = hidden_field_tag "game", params[:game]
+.game
 
-    - if @select_troops
-      = hidden_field_tag "attacking_country", @attacking_country.id
-    - if @troops_to_move
-      = hidden_field_tag "country_from", @distributing_country.id
+  .side-bar
+    .hint= @player_hint
 
-    - for x in 1..@grid.length-1
-      .hex-row
-        - for y in 1..@grid[x].length-1
-          - if y.even?
-            .hex.even
-              = render 'hex', country: @grid[x][y]
-          - else
-            .hex
-              = render 'hex', country: @grid[x][y]
+    - if @distribution_phase
+      =button_to "Next Player", next_player_path(game: params[:game])
+    - else
+      =button_to "End Turn", end_turn_path(game: params[:game])
 
+  .map
+    = form_for(:army, :url => url) do |f|
+      = hidden_field_tag "game", params[:game]
 
+      - if @select_troops
+        = hidden_field_tag "attacking_country", @attacking_country.id
+      - if @troops_to_move
+        = hidden_field_tag "country_from", @distributing_country.id
 
-/ - if @select_troops
-/   .map
-/     = form_for(:army, :url => attack_country_path) do |f|
-/       = hidden_field_tag "game", params[:game]
-/       = hidden_field_tag "attacking_country", @attacking_country.id
-/       - for x in 1..@grid.length-1
-/         .hex-row
-/           - for y in 1..@grid[x].length-1
-/             - if y.even?
-/               .hex.even
-/                 = render 'hex', country: @grid[x][y]
-/             - else
-/               .hex
-/                 = render 'hex', country: @grid[x][y]
-
-/ - else
-/   .map
-/     - for x in 1..@grid.length-1
-/       .hex-row
-/         - for y in 1..@grid[x].length-1
-/           - if y.even?
-/             .hex.even
-/               = render 'hex', country: @grid[x][y]
-/           - else
-/             .hex
-/               = render 'hex', country: @grid[x][y]
-
-
-.side-bar
-  - if @distribution_phase
-    =button_to "Next Player", next_player_path(game: params[:game])
-  - else
-    =button_to "End Turn", end_turn_path(game: params[:game])
+      - for x in 1..@grid.length-1
+        .hex-row
+          - for y in 1..@grid[x].length-1
+            - if y.even?
+              .hex.even
+                = render 'hex', country: @grid[x][y]
+            - else
+              .hex
+                = render 'hex', country: @grid[x][y]
